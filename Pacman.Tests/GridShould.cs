@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Xunit;
 
 namespace Pacman.Tests
@@ -10,12 +11,11 @@ namespace Pacman.Tests
         {
             var width = 3;
             var height = 3;
-            var grid = new Grid(width, height);
+            var cells = new List<Cell>();
+            var grid = new Grid(width, height, cells);
 
             Assert.Equal(width, grid.Width);
             Assert.Equal(height, grid.Height);
         }
-
-        
     }
 }

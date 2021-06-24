@@ -1,8 +1,8 @@
 namespace Pacman
 {
-    public class Monsters
+    public class Ghost
     {
-        // ghost
+        
         // Kill
         // Find
         // Follow
