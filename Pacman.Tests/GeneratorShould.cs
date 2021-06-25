@@ -26,7 +26,7 @@ namespace Pacman.Tests
             var expected = new Grid(3, 3, cells);
             var result = generator.CreateGrid();
 
-            Assert.Equal(expected, result);
+            Assert.True(PacmanHelper.GridsAreEqual(expected, result));
         }
     }
 }
