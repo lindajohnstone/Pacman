@@ -1,7 +1,7 @@
 namespace Pacman
 {
-    public class IInput
+    public interface IInput
     {
-        
+        public string Read(string v);
     }
 }

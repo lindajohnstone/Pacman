@@ -2,10 +2,8 @@ namespace Pacman
 {
     public enum CellContent
     {
-        wall,
-        empty,
+        none,
         pacman,
-        ghost,
-        dots
+        ghost
     }
 }

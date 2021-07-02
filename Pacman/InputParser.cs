@@ -15,11 +15,12 @@ namespace Pacman
             {
                 for (int j = 0; j < inputLines[i].Length; j++)
                 {
-                    var cellContents = CellContent.empty;
+                    var cellContents = CellContent.none;
+                    var cellState = CellState.empty;
                     switch (inputLines[i][j])
                     {
                         case 'W':
-                            cellContents = CellContent.wall;
+                            cellState = CellState.wall;
                             break;
                         case 'P':
                             cellContents = CellContent.pacman;
@@ -28,10 +29,10 @@ namespace Pacman
                             cellContents = CellContent.ghost;
                             break;
                         case 'D':
-                            cellContents = CellContent.dots;
+                            cellState = CellState.dots;
                             break;
                     }
-                    cells.Add(new Cell(cellContents, i - 1, j));
+                    cells.Add(new Cell(cellContents, cellState, i - 1, j));
                 }
             }
         return new Grid(Int32.Parse(dimensions[0]), Int32.Parse(dimensions[1]), cells);
