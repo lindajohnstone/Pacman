@@ -1,3 +1,5 @@
+using Spectre.Console;
+
 namespace Pacman
 {
     public class GameController
@@ -11,7 +13,20 @@ namespace Pacman
         // read directional key - take from pacman
         // keep moving pacman until hits wall
         // manages - make move pacman, make move ghost
-        // what triggers change? makemovepacman makemakeghost
-        // ghost on dots - needs to remember if dot there
+        // what triggers change? makemovepacman makemoveghost
+        IInput _input;
+
+        IOutput _output;
+
+        public GameController(IInput input, IOutput output)
+        {
+            _input = input;
+            _output = output;
+        }
+
+        public void Run()
+        {
+            AnsiConsole.Render(new FigletText("PACMAN")); // TODO this is where we're at (use Figgle??)
+        }
     }
 }

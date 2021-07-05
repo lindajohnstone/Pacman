@@ -16,6 +16,5 @@ namespace Pacman
             Height = height;
             Cells = cells;
         }
-        // TODO: grid needs a START place
     }
 }

@@ -1,6 +1,6 @@
 namespace Pacman
 {
-    public static class OutputFormatter
+    public static class OutputConstants
     {
         
     }
