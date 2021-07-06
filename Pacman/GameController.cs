@@ -1,3 +1,4 @@
+using Figgle;
 using Spectre.Console;
 
 namespace Pacman
@@ -26,7 +27,15 @@ namespace Pacman
 
         public void Run()
         {
-            AnsiConsole.Render(new FigletText("PACMAN")); // TODO this is where we're at (use Figgle??)
+            _output.WriteLine("");
+            _output.WriteLine(FiggleFonts.KeyboardSmall.Render("PACMAN"), "Yellow");
+            _output.WriteLine(OutputConstants.Enter, "yellow");
+            while (!_input.IsReadyToStart());
+            _output.WriteLine("Hello");
+
+            // TODO this is where we're at 
         }
+
+        
     }
 }

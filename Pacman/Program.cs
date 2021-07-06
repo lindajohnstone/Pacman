@@ -6,8 +6,10 @@ namespace Pacman
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-            // AnsiConsole.Render(new FigletText)
+            var input = new ConsoleInput();
+            var output = new ConsoleOutput();
+            var controller = new GameController(input, output);
+            controller.Run();
         }
     }
 }
