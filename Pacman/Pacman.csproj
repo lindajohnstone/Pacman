@@ -10,4 +10,8 @@
     <PackageReference Include="Spectre.Console" Version="0.40.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="grids/*.*"><CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory></None>
+  </ItemGroup>
+
 </Project>

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Pacman
 {
@@ -15,6 +16,10 @@ namespace Pacman
             Width = width;
             Height = height;
             Cells = cells;
+        }
+        public Cell GetCellAtLocation(Location location)
+        {
+            return Cells.FirstOrDefault(cell => cell.Location.X == location.X && cell.Location.Y == location.Y);
         }
     }
 }

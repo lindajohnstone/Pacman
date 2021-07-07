@@ -15,6 +15,7 @@ namespace Pacman
         // keep moving pacman until hits wall
         // manages - make move pacman, make move ghost
         // what triggers change? makemovepacman makemoveghost
+
         IInput _input;
 
         IOutput _output;
@@ -31,7 +32,10 @@ namespace Pacman
             _output.WriteLine(FiggleFonts.KeyboardSmall.Render("PACMAN"), "Yellow");
             _output.WriteLine(OutputConstants.Enter, "yellow");
             while (!_input.IsReadyToStart());
-            _output.WriteLine("Hello");
+            var file = new FileInput();
+            var input = file.Read("Pacman/grids/pacman-level-1.txt");
+            var grid = InputParser.ParseGrid(input);
+            _output.WriteLine(OutputFormatter.DisplayGrid(grid));
 
             // TODO this is where we're at 
         }
