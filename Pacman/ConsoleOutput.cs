@@ -29,5 +29,9 @@ namespace Pacman
             Console.WriteLine(value);
             Console.ResetColor();
         }
+        public void Clear()
+        {
+            Console.Clear();
+        }
     }
 }

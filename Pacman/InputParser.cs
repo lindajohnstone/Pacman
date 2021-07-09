@@ -7,6 +7,7 @@ namespace Pacman
     {
         public static Grid ParseGrid(string input)
         {
+            var start = new Location(0, 0);
             var inputLines = input.Split("\n");
             var dimensions = inputLines[0].Split(",");
             var cells = new List<Cell>();
@@ -24,6 +25,7 @@ namespace Pacman
                             break;
                         case 'P':
                             cellContents = CellContent.pacman;
+                            start = new Location(i - 1, j);
                             break;
                         case 'G':
                             cellContents = CellContent.ghost;
@@ -35,7 +37,7 @@ namespace Pacman
                     cells.Add(new Cell(cellContents, cellState, i - 1, j));
                 }
             }
-        return new Grid(Int32.Parse(dimensions[0]), Int32.Parse(dimensions[1]), cells);
+        return new Grid(Int32.Parse(dimensions[0]), Int32.Parse(dimensions[1]), cells, start);
         }
     }
 }

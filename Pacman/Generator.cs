@@ -5,7 +5,14 @@ namespace Pacman
 {
     public class Generator
     {
-        public Grid CreateGrid()
+        public Grid CreateGrid(string filePath)
+        {
+            var file = new FileInput();
+            var input = file.Read(filePath);
+            return InputParser.ParseGrid(input);
+        }
+
+        internal void CreateNextGrid(IPlayer player)
         {
             throw new NotImplementedException();
         }

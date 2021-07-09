@@ -12,7 +12,7 @@ namespace Pacman
 
         public const string pacman = "🌝";
         public const string wall = "🟩";
-        public const string dots = "o";
+        public const string dots = " .";
 
         public const string ghost = "👻";
         public const string empty = "  ";

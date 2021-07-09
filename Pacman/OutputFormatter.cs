@@ -8,7 +8,7 @@ namespace Pacman
         public static string DisplayGrid(Grid grid)
         {
             StringBuilder stringBuilder = new StringBuilder();
-            for (int x = 1; x < grid.Height; x++)
+            for (int x = 0; x < grid.Height; x++)
             {
                 for (int y = 0; y < grid.Width; y++)
                 {
@@ -18,22 +18,22 @@ namespace Pacman
                     switch (cell.State)
                     {
                         case CellState.wall:
-                            cellDisplay += OutputConstants.wall;
+                            cellDisplay = OutputConstants.wall;
                             break;
                         case CellState.empty:
-                            cellDisplay += OutputConstants.empty;
+                            cellDisplay = OutputConstants.empty;
                             break;
                         case CellState.dots:
-                            cellDisplay += OutputConstants.dots;
+                            cellDisplay = OutputConstants.dots;
                             break;
                     }
                     switch (cell.Content)
                     {
                         case CellContent.pacman:
-                            cellDisplay += OutputConstants.pacman;
+                            cellDisplay = OutputConstants.pacman;
                             break;
                         case CellContent.ghost:
-                            cellDisplay += OutputConstants.ghost;
+                            cellDisplay = OutputConstants.ghost;
                             break;
                     }
                     stringBuilder.Append(cellDisplay);

@@ -10,5 +10,7 @@ namespace Pacman
         public void DisplayTitle(string value, string textColour = "");
 
         public void SetBackgroundColour(string value);
+
+        public void Clear();
     }
 }

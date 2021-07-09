@@ -37,7 +37,7 @@ namespace Pacman.Tests
                 new Cell(CellContent.none, CellState.wall, 4, 3),
                 new Cell(CellContent.none, CellState.wall, 4, 4)
             };
-            var expected = new Grid(5, 5, cells);
+            var expected = new Grid(5, 5, cells, new Location(1,1));
 
             var result = InputParser.ParseGrid("5,5\nWWWWW\nWPDDW\nWDWDW\nWEEGW\nWWWWW");
 
