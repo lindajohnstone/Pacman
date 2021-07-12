@@ -12,7 +12,7 @@ namespace Pacman
             return InputParser.ParseGrid(input);
         }
 
-        internal void CreateNextGrid(IPlayer player)
+        public void CreateNextGrid(IPlayer player)
         {
             throw new NotImplementedException();
         }

@@ -16,14 +16,18 @@ namespace Pacman
         // > = left
         // ^ = down 
         // arrow keys for movement
+        public Direction Direction { get; private set; }
         IInput _input;
         public Pacman(IInput input)
         {
             _input = input;
         }
-        public void GetDirection()
+        public void GetDirection() // TODO rename?
         {
-            throw new System.NotImplementedException();
+            if(_input.HasDirectionChange() && Direction != )
+            {
+                Direction = _input.GetDirection();
+            }
         }
 
         public void MakeMove()

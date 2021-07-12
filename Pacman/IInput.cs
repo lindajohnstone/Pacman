@@ -6,5 +6,6 @@ namespace Pacman
     {
         public string Read(string v);
         bool IsReadyToStart();
+        Direction GetDirection();
     }
 }

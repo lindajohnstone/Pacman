@@ -6,27 +6,27 @@ namespace Pacman
     public class TurnQueue
     {
         // stores queue of player turns
-        Queue<CellContent> _queue = new Queue<CellContent>();
+        Queue<IPlayer> _queue = new Queue<IPlayer>();
 
-        public TurnQueue(List<CellContent> players)
+        public TurnQueue(List<IPlayer> players)
         {
             foreach (var player in players)
             {
-                if (player != CellContent.none) _queue.Enqueue(player);
+                _queue.Enqueue(player);
             }
         }
 
         public TurnQueue(TurnQueue source)
         {
-            this._queue = new Queue<CellContent>(source._queue);
+            this._queue = new Queue<IPlayer>(source._queue);
         }
 
-        public CellContent GetCurrentPlayer()
+        public IPlayer GetCurrentPlayer()
         {
             return _queue.Peek();
         }
 
-        public CellContent SetNextPlayer()
+        public IPlayer SetNextPlayer()
         {
             var lastPlayer = _queue.Dequeue();
             _queue.Enqueue(lastPlayer);

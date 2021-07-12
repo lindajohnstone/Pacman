@@ -39,23 +39,23 @@ namespace Pacman
 
             // print level
             var generator = new Generator();
-            var filePath = generator.CreateGrid(Levels.Level1);
+            var grid = generator.CreateGrid(Levels.Level1);
             _output.Clear();
-            _output.WriteLine(OutputFormatter.DisplayGrid(filePath));
+            _output.WriteLine(OutputFormatter.DisplayGrid(grid));
             var pacman = new Pacman(_input);
             var ghost = new Ghost();
-            var enums = Enum.GetValues(typeof(CellContent));
-            var players = new List<CellContent>((CellContent[])enums);
+            var players = new List<IPlayer>();
             var turn = new TurnQueue(players);
             while (!EndGame())
             {
                 var player = turn.GetCurrentPlayer();
-                // player.GetDirection();
+                player.GetDirection();
                 // generator.CreateNextGrid(player);
                 // TODO: how to get direction and move
                 // check if pacman and ghost on same space
 
                 turn.SetNextPlayer();
+                _output.WriteLine(OutputFormatter.DisplayGrid(grid));
             }
             // pacman has turn
             // check for input on pacman's direction
