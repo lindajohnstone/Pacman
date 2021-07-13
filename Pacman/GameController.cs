@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Figgle;
 using Spectre.Console;
 using System.Linq;
+using System.Threading;
 
 namespace Pacman
 {
@@ -44,17 +45,23 @@ namespace Pacman
             _output.WriteLine(OutputFormatter.DisplayGrid(grid));
             var pacman = new Pacman(_input);
             var ghost = new Ghost();
-            var players = new List<IPlayer>();
-            var turn = new TurnQueue(players);
+            var players = new List<IPlayer>()
+            {
+                pacman,
+                ghost
+            };
             while (!EndGame())
             {
-                var player = turn.GetCurrentPlayer();
-                player.GetDirection();
-                // generator.CreateNextGrid(player);
-                // TODO: how to get direction and move
-                // check if pacman and ghost on same space
+                foreach (var player in players)
+                {
+                    player.GetDirection();
+                    // TODO: how to get direction and move
+                    // check if pacman and ghost on same space
 
-                turn.SetNextPlayer();
+                }
+                generator.CreateNextGrid(grid, players);
+                _output.Clear();
+                //Thread.Sleep(500);
                 _output.WriteLine(OutputFormatter.DisplayGrid(grid));
             }
             // pacman has turn

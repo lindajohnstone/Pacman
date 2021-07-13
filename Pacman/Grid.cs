@@ -18,9 +18,14 @@ namespace Pacman
             Cells = cells;
             StartLocation = start;
         }
-        public Cell GetCellAtLocation(Location location)
+        public Cell GetCell(Location location)
         {
             return Cells.FirstOrDefault(cell => cell.Location.X == location.X && cell.Location.Y == location.Y);
+        }
+
+        public Cell GetCell(CellContent content)
+        {
+            return Cells.FirstOrDefault(cell => cell.Content == content);
         }
     }
 }

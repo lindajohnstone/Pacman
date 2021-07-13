@@ -24,7 +24,7 @@ namespace Pacman
         }
         public void GetDirection() // TODO rename?
         {
-            if(_input.HasDirectionChange() && Direction != )
+            if(Direction != Direction.NoChange)
             {
                 Direction = _input.GetDirection();
             }

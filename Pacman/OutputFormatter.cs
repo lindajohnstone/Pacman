@@ -13,7 +13,7 @@ namespace Pacman
                 for (int y = 0; y < grid.Width; y++)
                 {
                     var location = new Location(x, y);
-                    var cell = grid.GetCellAtLocation(location);
+                    var cell = grid.GetCell(location);
                     var cellDisplay = "";
                     switch (cell.State)
                     {

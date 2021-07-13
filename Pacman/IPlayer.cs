@@ -2,7 +2,8 @@ namespace Pacman
 {
     public interface IPlayer
     {
-        public void GetDirection();
+        void GetDirection();
         void MakeMove();
+        Direction Direction { get; }
     }
 }

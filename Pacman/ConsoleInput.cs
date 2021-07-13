@@ -16,14 +16,7 @@ namespace Pacman
                 if (Console.ReadKey(true).Key == ConsoleKey.Enter) return true;
             }
             return false;
-        }
-
-        public bool HasDirectionChanged()
-        {
-             return true;
-            return false;
-        }
-            
+        }   
 
         public Direction GetDirection()
         {
@@ -34,14 +27,11 @@ namespace Pacman
                     case ConsoleKey.UpArrow:
                         return Direction.Up;
                     case ConsoleKey.DownArrow:
-                        //
-                        break;
+                        return Direction.Down;
                     case ConsoleKey.LeftArrow:
-                        //
-                        break;
+                        return Direction.Left;
                     case ConsoleKey.RightArrow:
-                        //
-                        break;
+                        return Direction.Right;
                 }
             }
             return Direction.NoChange;
