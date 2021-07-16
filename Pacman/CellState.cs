@@ -3,8 +3,8 @@ namespace Pacman
     public enum CellState
 
     {
-        wall,
-        empty,
-        dots
+        Wall,
+        Empty,
+        Dot
     }
 }

@@ -12,29 +12,29 @@ namespace Pacman
             var dimensions = inputLines[0].Split(",");
             var cells = new List<Cell>();
 
-            for (int i = 1; i < inputLines.Length; i++)
+            for (int y = 1; y < inputLines.Length; y++)
             {
-                for (int j = 0; j < inputLines[i].Length; j++)
+                for (int x = 0; x < inputLines[y].Length; x++)
                 {
-                    var cellContents = CellContent.none;
-                    var cellState = CellState.empty;
-                    switch (inputLines[i][j])
+                    var cellContents = CellContent.None;
+                    var cellState = CellState.Empty;
+                    switch (inputLines[y][x])
                     {
                         case 'W':
-                            cellState = CellState.wall;
+                            cellState = CellState.Wall;
                             break;
                         case 'P':
-                            cellContents = CellContent.pacman;
-                            start = new Location(i - 1, j);
+                            cellContents = CellContent.Pacman;
+                            start = new Location(x, y - 1);
                             break;
                         case 'G':
-                            cellContents = CellContent.ghost;
+                            cellContents = CellContent.Ghost;
                             break;
                         case 'D':
-                            cellState = CellState.dots;
+                            cellState = CellState.Dot;
                             break;
                     }
-                    cells.Add(new Cell(cellContents, cellState, i - 1, j));
+                    cells.Add(new Cell(cellContents, cellState, x, y - 1));
                 }
             }
         return new Grid(Int32.Parse(dimensions[0]), Int32.Parse(dimensions[1]), cells, start);

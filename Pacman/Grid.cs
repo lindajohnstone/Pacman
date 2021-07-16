@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -26,6 +27,24 @@ namespace Pacman
         public Cell GetCell(CellContent content)
         {
             return Cells.FirstOrDefault(cell => cell.Content == content);
+        }
+
+        public void UpdateLocationFor(CellContent content, Location location)
+        {
+            var previous = GetCell(content);
+            ReplaceCellContent(CellContent.None, previous);
+            var next = GetCell(location);
+            ReplaceCellContent(content, next);
+        }
+
+        private void ReplaceCellContent(CellContent newContent, Cell oldCell)
+        {
+            Cells.Remove(oldCell);
+            var replacement = new Cell(newContent,
+                oldCell.State,
+                oldCell.Location.X,
+                oldCell.Location.Y);
+            Cells.Add(replacement);
         }
     }
 }

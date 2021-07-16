@@ -22,12 +22,10 @@ namespace Pacman
         {
             _input = input;
         }
-        public void GetDirection() // TODO rename?
+        public void GetDirection()
         {
-            if(Direction != Direction.NoChange)
-            {
-                Direction = _input.GetDirection();
-            }
+            var newDirection = _input.GetDirection();
+            if (newDirection != Direction.NoChange) Direction = newDirection;
         }
 
         public void MakeMove()

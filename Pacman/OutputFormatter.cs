@@ -8,31 +8,31 @@ namespace Pacman
         public static string DisplayGrid(Grid grid)
         {
             StringBuilder stringBuilder = new StringBuilder();
-            for (int x = 0; x < grid.Height; x++)
+            for (int y = 0; y < grid.Height; y++)
             {
-                for (int y = 0; y < grid.Width; y++)
+                for (int x = 0; x < grid.Width; x++)
                 {
                     var location = new Location(x, y);
                     var cell = grid.GetCell(location);
                     var cellDisplay = "";
                     switch (cell.State)
                     {
-                        case CellState.wall:
+                        case CellState.Wall:
                             cellDisplay = OutputConstants.wall;
                             break;
-                        case CellState.empty:
+                        case CellState.Empty:
                             cellDisplay = OutputConstants.empty;
                             break;
-                        case CellState.dots:
+                        case CellState.Dot:
                             cellDisplay = OutputConstants.dots;
                             break;
                     }
                     switch (cell.Content)
                     {
-                        case CellContent.pacman:
+                        case CellContent.Pacman:
                             cellDisplay = OutputConstants.pacman;
                             break;
-                        case CellContent.ghost:
+                        case CellContent.Ghost:
                             cellDisplay = OutputConstants.ghost;
                             break;
                     }

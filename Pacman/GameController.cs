@@ -55,13 +55,10 @@ namespace Pacman
                 foreach (var player in players)
                 {
                     player.GetDirection();
-                    // TODO: how to get direction and move
-                    // check if pacman and ghost on same space
-
                 }
-                generator.CreateNextGrid(grid, players);
+                grid = generator.CreateNextGrid(grid, players);
+                Thread.Sleep(500);
                 _output.Clear();
-                //Thread.Sleep(500);
                 _output.WriteLine(OutputFormatter.DisplayGrid(grid));
             }
             // pacman has turn
@@ -79,7 +76,6 @@ namespace Pacman
             // check conditions for end:
             // are all the dots gone?
 
-            // TODO this is where we're at 😁
 
             //  []][PG][ ]
         }
