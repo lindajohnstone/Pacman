@@ -22,15 +22,10 @@ namespace Pacman
         {
             _input = input;
         }
-        public void GetDirection()
+        public void GetDirection(Grid grid)
         {
             var newDirection = _input.GetDirection();
             if (newDirection != Direction.NoChange) Direction = newDirection;
-        }
-
-        public void MakeMove()
-        {
-            throw new System.NotImplementedException();
         }
     }
 }

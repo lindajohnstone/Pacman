@@ -33,6 +33,9 @@ namespace Pacman
                         case 'D':
                             cellState = CellState.Dot;
                             break;
+                        case 'H':
+                            cellState = CellState.GhostHome;
+                            break;
                     }
                     cells.Add(new Cell(cellContents, cellState, x, y - 1));
                 }

@@ -42,7 +42,7 @@ namespace Pacman
             var generator = new Generator();
             var grid = generator.CreateGrid(Levels.Level1);
             _output.Clear();
-            _output.WriteLine(OutputFormatter.DisplayGrid(grid));
+            _output.WriteLine(OutputFormatter.DisplayGrid(grid), "White");
             var pacman = new Pacman(_input);
             var ghost = new Ghost();
             var players = new List<IPlayer>()
@@ -50,16 +50,27 @@ namespace Pacman
                 pacman,
                 ghost
             };
-            while (!EndGame())
+            var gameOver = false;
+            while (!gameOver)
             {
                 foreach (var player in players)
                 {
-                    player.GetDirection();
+                    player.GetDirection(grid);
                 }
-                grid = generator.CreateNextGrid(grid, players);
-                Thread.Sleep(500);
-                _output.Clear();
-                _output.WriteLine(OutputFormatter.DisplayGrid(grid));
+                try
+                {
+                    grid = generator.CreateNextGrid(grid, players);
+                    Thread.Sleep(400);
+                    _output.Clear();
+                    _output.WriteLine(OutputFormatter.DisplayGrid(grid), "White");
+                }
+                catch (GameOverException e)
+                {
+                    _output.Clear();
+                    _output.WriteLine(FiggleFonts.KeyboardSmall.Render("GAME OVER"), "Red");
+                    _output.WriteLine(e.Message, "White");
+                    gameOver = true;
+                }
             }
             // pacman has turn
             // check for input on pacman's direction

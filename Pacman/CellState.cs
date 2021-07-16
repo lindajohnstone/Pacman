@@ -5,6 +5,7 @@ namespace Pacman
     {
         Wall,
         Empty,
-        Dot
+        Dot,
+        GhostHome
     }
 }

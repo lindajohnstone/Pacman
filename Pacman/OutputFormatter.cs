@@ -26,6 +26,9 @@ namespace Pacman
                         case CellState.Dot:
                             cellDisplay = OutputConstants.dots;
                             break;
+                        case CellState.GhostHome:
+                            cellDisplay = OutputConstants.ghostHome;
+                            break;
                     }
                     switch (cell.Content)
                     {

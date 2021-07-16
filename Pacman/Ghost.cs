@@ -4,17 +4,22 @@ namespace Pacman
     {
         public Direction Direction { get; private set; }
 
+        //AtHome == false;
         // Kill
         // Find
         // Follow
-        public void GetDirection()
+        //  . .  . . . . .  p p p p p         |
+        //  . . . . . . . . .        |
+        //  ----------------------   |
+        //            |       |      |
+        //            |       |      |
+        //            ----B----      |
+        //                 G
+        public void GetDirection(Grid grid)
         {
+            var pacman = grid.GetCell(CellContent.Pacman).Location;
+            var ghost = grid.GetCell(CellContent.Ghost).Location;
             Direction = Direction.Down; // TODO: fix
-        }
-
-        public void MakeMove()
-        {
-            throw new System.NotImplementedException();
         }
     }
 }

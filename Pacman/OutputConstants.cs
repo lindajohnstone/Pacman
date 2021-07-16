@@ -15,6 +15,7 @@ namespace Pacman
         public const string dots = " .";
 
         public const string ghost = "👻";
+        public const string ghostHome = "🚪";
         public const string empty = "  ";
     }
 }

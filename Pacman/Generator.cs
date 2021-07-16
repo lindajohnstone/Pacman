@@ -47,8 +47,16 @@ namespace Pacman
                 }
                 var newLocation = new Location(x, y);
                 var nextCell = nextGrid.GetCell(newLocation);
-                
-                if(nextCell.State != CellState.Wall)
+
+                if (player is Pacman && nextCell.Content == CellContent.Ghost)
+                {
+                    throw new GameOverException("Pacman ran into the ghost!");
+                }
+                if (player is Ghost && nextCell.Content == CellContent.Pacman)
+                {
+                    throw new GameOverException("Pacman has been eaten by the ghost!");
+                }
+                if (nextCell.State != CellState.Wall)
                 {
                     nextGrid.UpdateLocationFor(content, newLocation);
                 }
