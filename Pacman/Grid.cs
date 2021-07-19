@@ -29,6 +29,11 @@ namespace Pacman
             return Cells.FirstOrDefault(cell => cell.Content == content);
         }
 
+        public Cell GetCell(CellState state)
+        {
+            return Cells.FirstOrDefault(cell => cell.State == state);
+        }
+
         public void UpdateLocationFor(CellContent content, Location location)
         {
             var previous = GetCell(content);
