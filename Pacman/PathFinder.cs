@@ -6,12 +6,15 @@ namespace Pacman
 {
     public class PathFinder
     {
-        public void FindShortestMethod(Location start, Location finish)
+        public Direction GetNextDirectionBasedOnBestPath(Location start, Location finish, Grid grid)
         {
+            var startTile = new Tile(start);
+            var finishTile = new Tile(finish);
+
             var activeTiles = new List<Tile>();
             var visitedTiles = new List<Tile>();
-
-            activeTiles.Add(start);
+            startTile.SetDistance(finish.X, finish.Y);
+            activeTiles.Add(startTile);
             
             while (activeTiles.Any())
             {
@@ -19,34 +22,31 @@ namespace Pacman
 
                 if (checkTile.X == finish.X && checkTile.Y == finish.Y)
                 {
-                    //We found the destination and we can be sure (Because the the OrderBy above)
-                    //That it's the most low cost option. 
-                    var tile = checkTile;
-                    Console.WriteLine("Retracing steps backwards...");
-                    while (true)
+                    var nextMove = activeTiles[^1];
+                    var xChange = startTile.X - nextMove.X;
+                    var yChange = startTile.Y - nextMove.Y;
+
+                    switch(xChange)
                     {
-                        Console.WriteLine($"{tile.X} : {tile.Y}");
-                        if (map[tile.Y][tile.X] == ' ')
-                        {
-                            var newMapRow = map[tile.Y].ToCharArray();
-                            newMapRow[tile.X] = '*';
-                            map[tile.Y] = new string(newMapRow);
-                        }
-                        tile = tile.Parent;
-                        if (tile == null)
-                        {
-                            Console.WriteLine("Map looks like :");
-                            map.ForEach(x => Console.WriteLine(x));
-                            Console.WriteLine("Done!");
-                            return;
-                        }
+                        case 1:
+                            return Direction.Left;
+                        case -1:
+                            return Direction.Right;
+                    }
+
+                    switch(yChange)
+                    {
+                        case 1:
+                            return Direction.Up;
+                        case -1:
+                            return Direction.Down;
                     }
                 }
 
                 visitedTiles.Add(checkTile);
                 activeTiles.Remove(checkTile);
 
-                var walkableTiles = GetWalkableTiles(map, checkTile, finish);
+                var walkableTiles = GetWalkableTiles(grid, checkTile, finishTile);
 
                 foreach (var walkableTile in walkableTiles)
                 {
@@ -54,7 +54,9 @@ namespace Pacman
                     if (visitedTiles.Any(x => x.X == walkableTile.X && x.Y == walkableTile.Y))
                         continue;
 
-                    //It's already in the active list, but that's OK, maybe this new tile has a better value (e.g. We might zigzag earlier but this is now straighter). 
+                    //It's already in the active list, but that's OK, 
+                    //maybe this new tile has a better value (e.g. We might zigzag earlier 
+                    //but this is now straighter). 
                     if (activeTiles.Any(x => x.X == walkableTile.X && x.Y == walkableTile.Y))
                     {
                         var existingTile = activeTiles.First(x => x.X == walkableTile.X && x.Y == walkableTile.Y);
@@ -71,7 +73,29 @@ namespace Pacman
                     }
                 }
             }
+            return Direction.NoChange;
+        }
 
+        private static List<Tile> GetWalkableTiles(Grid grid, Tile currentTile, Tile targetTile)
+        {
+            var possibleTiles = new List<Tile>()
+            {
+                new Tile(currentTile.X, currentTile.Y - 1, currentTile, currentTile.Cost + 1 ),
+                new Tile(currentTile.X, currentTile.Y + 1, currentTile, currentTile.Cost + 1),
+                new Tile(currentTile.X - 1, currentTile.Y, currentTile, currentTile.Cost + 1),
+                new Tile(currentTile.X + 1, currentTile.Y, currentTile, currentTile.Cost + 1),
+            };
+
+            possibleTiles.ForEach(tile => tile.SetDistance(targetTile.X, targetTile.Y));
+
+            var maxX = grid.Width - 1;
+            var maxY = grid.Height - 1;
+
+            return possibleTiles
+                    .Where(tile => tile.X >= 0 && tile.X <= maxX)
+                    .Where(tile => tile.Y >= 0 && tile.Y <= maxY)
+                    .Where(tile => grid.GetCell(new Location(tile.X, tile.Y)).State != CellState.Wall)
+                    .ToList();
         }
     }
 }
