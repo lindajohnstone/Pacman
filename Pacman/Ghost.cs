@@ -27,8 +27,10 @@ namespace Pacman
         {
             var pacman = grid.GetCell(CellContent.Pacman).Location;
             var ghost = grid.GetCell(CellContent.Ghost).Location;
+            Console.WriteLine($"Ghost is currently at {ghost.X},{ghost.Y}");
 
             var direction = PathFinder.GetNextDirectionBasedOnBestPath(pacman, ghost, grid);
+            Console.WriteLine($"Ghost will move {direction}");
             if (direction != Direction.NoChange)
             {
                 Direction = direction;
