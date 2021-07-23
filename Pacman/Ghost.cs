@@ -12,24 +12,13 @@ namespace Pacman
         {   
             PathFinder = new PathFinder();
         }
-
-        // Kill
-        // Find
-        // Follow
-        //  . .  . . . . .  p p p p p |
-        //  P . . . . . . . .         |
-        //  ----------------------    |
-        //  | G        |       |      |
-        //             |       |      |
-        //  |          ----B----      |
-        //                 
-        public void GetDirection(Grid grid) //TODO: add writelines to see what ghost is doing
+               
+        public void GetDirection(Grid grid) 
         {
             var pacman = grid.GetCell(CellContent.Pacman).Location;
             var ghost = grid.GetCell(CellContent.Ghost).Location;
-            Console.WriteLine($"Ghost is currently at {ghost.X},{ghost.Y}");
-
-            var direction = PathFinder.GetNextDirectionBasedOnBestPath(pacman, ghost, grid);
+            
+            var direction = PathFinder.GetNextDirectionBasedOnBestPath(ghost, pacman, grid);
             Console.WriteLine($"Ghost will move {direction}");
             if (direction != Direction.NoChange)
             {

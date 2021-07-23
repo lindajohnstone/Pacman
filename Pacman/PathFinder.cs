@@ -27,17 +27,23 @@ namespace Pacman
 
                 if (checkTile.X == finish.X && checkTile.Y == finish.Y)
                 {
-                    Console.WriteLine("I've found a path");
-                    Console.WriteLine("Path:");
-                    foreach(var move in activeTiles)
+                    var tile = checkTile;
+                    var bestPath = new List<Tile>();
+                    while (tile.Parent != null)
                     {
-                        Console.WriteLine($"{move.X}, {move.Y}");
+                        bestPath.Add(tile);
+                        tile = tile.Parent;
                     }
-                    var nextMove = activeTiles[^1];
                     
+                    var nextMove = bestPath[^1];
+                    Console.WriteLine(nextMove.X);
+                    Console.WriteLine(nextMove.Y);
+
                     var xChange = startTile.X - nextMove.X;
+                    Console.WriteLine($"{startTile.X} - {nextMove.X}");
                     Console.WriteLine($"xChange: {xChange}");
                     var yChange = startTile.Y - nextMove.Y;
+                    Console.WriteLine($"{startTile.Y} - {nextMove.Y}");
                     Console.WriteLine($"yChange: {yChange}");
 
                     switch(xChange)

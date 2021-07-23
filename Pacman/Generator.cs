@@ -60,7 +60,9 @@ namespace Pacman
                 {
                     nextGrid.UpdateLocationFor(content, newLocation);
                 }
-
+                // TODO: make it look like pacman is eaten - ghost replaces pacman 
+                // prints ghost on top of pacman
+                // need to check if the grid doesn't contain pacman, he has been eaten
 
                 //TODO: pacman only
                 // else if (nextCell.State == CellState.Dot)
