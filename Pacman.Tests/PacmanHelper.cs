@@ -17,7 +17,7 @@ namespace Pacman.Tests
 
         public static bool ListsOfCellsAreEqual(List<Cell> cells1, List<Cell> cells2)
         {
-            if (cells1 == null || cells1 == null) return false;
+            if (cells1 == null || cells2 == null) return false;
             if (cells1.Count != cells2.Count) return false;
             for (var i = 0; i < cells1.Count; i++)
             {

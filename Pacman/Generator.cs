@@ -64,25 +64,16 @@ namespace Pacman
                 // prints ghost on top of pacman
                 // need to check if the grid doesn't contain pacman, he has been eaten
 
+
+
+
                 //TODO: pacman only
                 // else if (nextCell.State == CellState.Dot)
                 // {
-                //     // TODO: scoring
-                // }
-                // else if (nextCell.Content == CellContent.Ghost)
-                // {
-                //     // Pacman dies TODO: lives
-
-                // }
-
-
-                
-                // if newlocation == wall return;
-                // else set pacman here
-                // if newlocation is ghost?? 
-                // throw new PacmanDeadException("GHOST IS HERE!!!!");
                 // TODO: scoring if cellstate === dots score++
-                
+                // }
+
+                //TODO: lives - pacman dies and his position resets, but not the whole grid/score
             }
             return nextGrid;
         }

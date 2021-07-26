@@ -7,6 +7,7 @@ namespace Pacman
 {
     public class PathFinder
     {
+        // Code source: https://dotnetcoretutorials.com/2020/07/25/a-search-pathfinding-algorithm-in-c/
         public Direction GetNextDirectionBasedOnBestPath(Location start, Location finish, Grid grid)
         {
             var startTile = new Tile(start);
@@ -19,11 +20,7 @@ namespace Pacman
             
             while (activeTiles.Any())
             {
-                //Console.WriteLine($"Active Tiles: {activeTiles.Count}");
-                //Console.WriteLine($"Visited Tiles: {visitedTiles.Count}");
-                
                 var checkTile = activeTiles.OrderBy(x => x.CostDistance).First();
-                //Console.WriteLine($"Currently looking at the tile at location {checkTile.X},{checkTile.Y}");
 
                 if (checkTile.X == finish.X && checkTile.Y == finish.Y)
                 {
@@ -36,15 +33,9 @@ namespace Pacman
                     }
                     
                     var nextMove = bestPath[^1];
-                    Console.WriteLine(nextMove.X);
-                    Console.WriteLine(nextMove.Y);
-
+                    
                     var xChange = startTile.X - nextMove.X;
-                    Console.WriteLine($"{startTile.X} - {nextMove.X}");
-                    Console.WriteLine($"xChange: {xChange}");
                     var yChange = startTile.Y - nextMove.Y;
-                    Console.WriteLine($"{startTile.Y} - {nextMove.Y}");
-                    Console.WriteLine($"yChange: {yChange}");
 
                     switch(xChange)
                     {
@@ -71,12 +62,9 @@ namespace Pacman
 
                 foreach (var walkableTile in walkableTiles)
                 {
-                    //Console.WriteLine("---------");
-                    //Console.WriteLine($"Walkable Tile: {walkableTile.X},{walkableTile.Y}");
                     //We have already visited this tile so we don't need to do so again!
                     if (visitedTiles.Any(x => x.X == walkableTile.X && x.Y == walkableTile.Y))
                     {
-                        //Console.WriteLine("I've seen this tile");
                         continue;
                     }
 
@@ -95,7 +83,6 @@ namespace Pacman
                     else
                     {
                         //We've never seen this tile before so add it to the list.
-                        //Console.WriteLine("oh wow~ a new tile!");
                         activeTiles.Add(walkableTile);
                     }
                 }
@@ -106,14 +93,12 @@ namespace Pacman
 
         private static List<Tile> GetWalkableTiles(Grid grid, Tile currentTile, Tile targetTile)
         {
-            //TODO: Moves list is wrong- is this getting the available tiles correctly?
-            var possibleTiles = new List<Tile>()
+            var possibleTiles = new List<Tile>();
+            for (int offset = -1; offset <= 1; offset += 2)
             {
-                new Tile(currentTile.X, currentTile.Y - 1, currentTile, currentTile.Cost + 1 ),
-                new Tile(currentTile.X, currentTile.Y + 1, currentTile, currentTile.Cost + 1),
-                new Tile(currentTile.X - 1, currentTile.Y, currentTile, currentTile.Cost + 1),
-                new Tile(currentTile.X + 1, currentTile.Y, currentTile, currentTile.Cost + 1),
-            };
+                possibleTiles.Add(new Tile(currentTile.X + offset, currentTile.Y, currentTile, currentTile.Cost + 1));
+                possibleTiles.Add(new Tile(currentTile.X, currentTile.Y + offset, currentTile, currentTile.Cost + 1));
+            }
 
             possibleTiles.ForEach(tile => tile.SetDistance(targetTile.X, targetTile.Y));
 
